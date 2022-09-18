@@ -27,14 +27,18 @@ class Phrase:
         return f'{self.phrase}'
 
     
-    def display(self):
+    def display(self, *guessed_letters):
         disp_list = []
-        for leter in self.phrase:
-            if leter == ' ':
-                disp_list.append(' ')
-            else: 
+        for i in self.phrase:
+            if i == ' ':
+                disp_list.append(' ')         
+            else:    
                 disp_list.append('_')
-        print(''.join(disp_list))
+        for x in guessed_letters:
+            for ind in list((index for index, elem in enumerate(self.phrase) if elem == x)):
+                disp_list[ind] = x
+    
+        print(''.join(disp_list)) 
         
     def check_letter(self, input_letter):
         return input_letter == self.phrase
@@ -44,6 +48,6 @@ class Phrase:
     
 if __name__ == '__main__': 
     
-    phrase1 = Phrase('Hola mundo')
+    phrase1 = Phrase('hola mundo')
     print(phrase1)
-    phrase1.display()
+    phrase1.display('o', 'l', 'a')
