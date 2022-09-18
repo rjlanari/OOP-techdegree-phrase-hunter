@@ -1,29 +1,49 @@
-
 # Create your Phrase class logic here.
 
 # Create the method display
-# Create the method check_letter
+    #make a list of characters that are in the phrase
+    #if the character is ' '
+    #append ' ' to the resulting list
+    #else for every character in the prhase.list
+    #append '_' to the resulting list
+    #return joint resulting list
+
+# Create the method check_letter 
+    #make a list of the characters in the phrase
+    #takes the imput letter
+    #returns true if the imput letter is in the litst of letters
+
 # Create the method check_complete
+    #make a list of the characters in the phrase
+    #get a list of letters that the player gessed
+    #return true when the all the gessed letters are in the list frase
 
 class Phrase:
     def __init__(self, phrase):
         self.phrase = phrase
         self.guessed = False
 
-    def display(phrase):
+    def __str__(self):
+        return f'{self.phrase}'
+
+    
+    def display(self):
         disp_list = []
-        char_list = list(phrase)
-        for i in char_list:
-            if i == ' ':
+        for leter in self.phrase:
+            if leter == ' ':
                 disp_list.append(' ')
-            else:
+            else: 
                 disp_list.append('_')
         print(''.join(disp_list))
-
+        
     def check_letter(self, input_letter):
         return input_letter == self.phrase
-
+        
     def check_phrase(self, all_letters):
         return all_letters == self.phrase
-
-#if __name__ == '__main__':
+    
+if __name__ == '__main__': 
+    
+    phrase1 = Phrase('Hola mundo')
+    print(phrase1)
+    phrase1.display()
