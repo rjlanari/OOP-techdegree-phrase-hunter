@@ -31,16 +31,16 @@ class Phrase:
         return input_letter in self.phrase
         
     def check_complete(self, *guessed_letters):
-        if set(self.phrase) == set(guessed_letters): #eliminate  blank spaces from phrase
+        if set(self.phrase) - {' '} == set(guessed_letters): #eliminates blank spaces from phrase
             return True
         else:
             return False
     
 if __name__ == '__main__': 
     
-    phrase1 = Phrase('hola mundo')
+    phrase1 = Phrase('hola manola')
     print(phrase1)
     phrase1.display()
-    print(phrase1.check_letter('a'))
-    print(phrase1.check_complete('h','o','l','a','m','u','n','d',' '))
+    print(phrase1.check_letter('r'))
+    print(phrase1.check_complete('h','o','l','a','m','u','n','d'))
     

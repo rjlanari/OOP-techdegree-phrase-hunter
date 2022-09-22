@@ -32,9 +32,11 @@ class Game:
         elif Phrase.check_phrase(self.guesses) == True:
             print("Congratulations, you've guessed the hidden phrase!")
 
-    def start(self):
+    def start_game(self):
+        game_running = True
         self.welcome()
         self.active_phrases = self.get_random_phrase()
+        self.active_phrases.display()
         while self.missed < 5:
             self.get_gess()
 
@@ -48,4 +50,4 @@ if __name__ == '__main__':
     random_phrase = Phrase(game1.get_random_phrase())
     print(random_phrase)
     random_phrase.display('d')
-
+    
