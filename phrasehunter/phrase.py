@@ -40,7 +40,7 @@ if __name__ == '__main__':
     
     phrase1 = Phrase('hola manola')
     print(phrase1)
-    phrase1.display('a', 'o')
+    phrase1.display('a',)
     print(phrase1.check_letter('o'))
     print(phrase1.check_complete('h','o','l','a','m','u','n','d'))
     

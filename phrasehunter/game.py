@@ -38,8 +38,9 @@ class Game:
         self.welcome()
         self.active_phrase = Phrase(self.get_random_phrase())
         self.active_phrase.display()
-        #while self.missed < 5:
-        self.active_phrase.display(tuple(self.get_guess()))
+        guessed = tuple(self.get_guess())
+        print(guessed)
+        self.active_phrase.display(guessed)
         
             
 
