@@ -1,6 +1,6 @@
 
 import random
-from phrase import Phrase
+from phrasehunter.phrase import Phrase
 
 class Game:
     def __init__(self):
@@ -28,32 +28,25 @@ class Game:
         return self.guesses
     
     def game_over(self):
-        if self.missed > 4 and Phrase.check_phrase(self.guesses) == False:
+        if self.missed > 4 and Phrase.check_complete(self.guesses) == False:
             print("You haven't guessed the hidden phrase, the game is over!")
-        elif Phrase.check_phrase(self.guesses) == True:
+            game_running = False
+        elif Phrase.check_complete(self.guesses) == True:
             print("Congratulations, you've guessed the hidden phrase!")
+            game_running = False
+        
 
     def start_game(self):
         game_running = True
-        self.welcome()
-        self.active_phrase = Phrase(self.get_random_phrase())
+        self.welcome() 
+        self.active_phrase = Phrase(self.get_random_phrase()) 
         self.active_phrase.display()
-        guessed = tuple(self.get_guess())
-        print(guessed)
-        self.active_phrase.display(guessed)
-        
+        while game_running == True:
+            guessed = tuple(self.get_guess()) #get a letter from user, giving tuple with guesses
+            if self.active_phrase.check_letter(guessed):#if letter in the frease
+                self.active_phrase.display(guessed)#display the frase with that letter
+            else:
+                self.missed =+ 1
+            self.game_over() #check if the game is over
             
 
-    
-
-
-if __name__ == '__main__':
-
-    game1 = Game()
-    #random_phrase = Phrase(game1.get_random_phrase())
-    #print(random_phrase)
-    #random_phrase.display('d')
-    game1.start_game()
-    #letters = game1.get_guess()
-    #print(letters)
-    

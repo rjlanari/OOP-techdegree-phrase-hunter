@@ -1,7 +1,15 @@
-# Import your Game class
+from re import A
+from phrasehunter.game import Game
 
-# Create your Dunder Main statement.
+if __name__ == '__main__':
 
-# Inside Dunder Main:
-## Create an instance of your Game class
-## Start your game by calling the instance method that starts the game loop
+    game1 = Game()
+    #random_phrase = Phrase(game1.get_random_phrase())
+    #print(random_phrase)
+    #random_phrase.display('d')
+    game1.start_game()
+    #letters = game1.get_guess()
+    #print(letters)
+
+
+
