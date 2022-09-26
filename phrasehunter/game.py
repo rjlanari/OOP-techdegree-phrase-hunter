@@ -24,7 +24,7 @@ class Game:
     
     def get_guess(self):
         guess = input('Please, enter a letter that you think would be in the phrase!')      
-        self.guesses.append(guess)
+        self.guesses.append(guess.lower())
         return self.guesses
     
     def game_over(self):
@@ -45,8 +45,9 @@ class Game:
             guessed = tuple(self.get_guess()) #get a letter from user, giving tuple with guesses
             if self.active_phrase.check_letter(guessed):#if letter in the frease
                 self.active_phrase.display(guessed)#display the frase with that letter
+                self.game_over()
             else:
                 self.missed =+ 1
-            self.game_over() #check if the game is over
+                self.game_over() #check if the game is over
             
 
