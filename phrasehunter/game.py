@@ -34,6 +34,8 @@ class Game:
         elif Phrase.check_complete(self.guesses) == True:
             print("Congratulations, you've guessed the hidden phrase!")
             game_running = False
+        else: 
+            game_running = True
         
 
     def start_game(self):
@@ -41,10 +43,10 @@ class Game:
         self.welcome() 
         self.active_phrase = Phrase(self.get_random_phrase()) 
         self.active_phrase.display()
-        while game_running == True:
-            guessed = tuple(self.get_guess()) #get a letter from user, giving tuple with guesses
+        while game_running:
+            guessed = str(self.get_guess()) #get a letter from user, giving tuple with guesses
             if self.active_phrase.check_letter(guessed):#if letter in the frease
-                self.active_phrase.display(guessed)#display the frase with that letter
+                self.active_phrase.display(tuple(guessed))#display the frase with that letter
                 self.game_over()
             else:
                 self.missed =+ 1

@@ -27,8 +27,8 @@ class Phrase:
     
         print(''.join(disp_list)) 
         
-    def check_letter(self, *input_letter):
-        return input_letter in tuple(self.phrase)
+    def check_letter(self, input_letter):
+        return input_letter in self.phrase
         
     def check_complete(self, *guessed_letters):
         if set(self.phrase) - {' '} == set(guessed_letters): #eliminates blank spaces from phrase
@@ -42,5 +42,5 @@ if __name__ == '__main__':
     print(phrase1)
     phrase1.display('a',)
     print(phrase1.check_letter('o'))
-    print(phrase1.check_complete('h','o','l','a','m','u','n','d'))
+    print(phrase1.check_complete('h','o','l','a','m','n'))
     
