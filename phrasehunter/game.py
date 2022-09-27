@@ -1,4 +1,3 @@
-
 import random
 from phrasehunter.phrase import Phrase
 
@@ -23,15 +22,14 @@ class Game:
         print("Hello, welcome to the Phrase Guessing Game!")
     
     def get_guess(self):
-        guess = input('Please, enter a letter that you think would be in the phrase!')      
-        self.guesses.append(guess.lower())
-        return self.guesses
+        guess = input('Please, enter a letter that you think would be in the phrase!')              
+        return str(guess)
     
     def game_over(self):
-        if self.missed > 4 and Phrase.check_complete(self.guesses) == False:
+        if self.missed > 4 and self.active_phrase.check_complete(tuple(self.guesses)) == False:
             print("You haven't guessed the hidden phrase, the game is over!")
             game_running = False
-        elif Phrase.check_complete(self.guesses) == True:
+        elif self.active_phrase.check_complete(tuple(self.guesses)) == True:
             print("Congratulations, you've guessed the hidden phrase!")
             game_running = False
         else: 
@@ -40,16 +38,19 @@ class Game:
 
     def start_game(self):
         game_running = True
+        list_guessed = []
         self.welcome() 
         self.active_phrase = Phrase(self.get_random_phrase()) 
+        print(str(self.active_phrase))  #just checking if the method worked
         self.active_phrase.display()
         while game_running:
-            guessed = str(self.get_guess()) #get a letter from user, giving tuple with guesses
-            if self.active_phrase.check_letter(guessed):#if letter in the frease
-                self.active_phrase.display(tuple(guessed))#display the frase with that letter
+            guessed = self.get_guess() #get a letter from user, giving tuple with guesses
+            self.guesses.append(guessed)
+            print(tuple(self.guesses)) #just checking if it is a tuple
+            if self.active_phrase.check_letter(guessed):#if letter in the phrase
+                self.active_phrase.display(tuple(self.guesses))#display the frase with that letter
                 self.game_over()
             else:
                 self.missed =+ 1
                 self.game_over() #check if the game is over
             
-

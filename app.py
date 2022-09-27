@@ -1,4 +1,3 @@
-from re import A
 from phrasehunter.game import Game
 
 if __name__ == '__main__':
@@ -10,6 +9,7 @@ if __name__ == '__main__':
     #random_phrase.display('d')
     #letters = game1.get_guess()
     #print(letters)
+
 
 
 
