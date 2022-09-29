@@ -1,10 +1,3 @@
-# Create your Phrase class logic here.
-
-# Create the method check_complete
-    #make a list of the characters in the phrase
-    #get a list of letters that the player gessed
-    #return true when the all the gessed letters are in the list frase
-
 class Phrase:
     def __init__(self, phrase):
         self.phrase = phrase
@@ -15,18 +8,13 @@ class Phrase:
 
     
     def display(self, *guessed_letters):
-        disp_list = []
         for i in self.phrase:
-            if i == ' ':
-                disp_list.append(' ')         
-            else:    
-                disp_list.append('_')
-        for x in guessed_letters:
-            for ind in list((index for index, elem in enumerate(self.phrase) if elem == x)):
-                disp_list[ind] = x
-    
-        print(''.join(disp_list)) 
-        
+            if i == ' ' or i in guessed_letters:
+                print(i, end='')
+            else: 
+                print('_', end='')
+        print("\n")    
+
     def check_letter(self, input_letter):
         return input_letter in self.phrase
         
@@ -40,7 +28,9 @@ if __name__ == '__main__':
     
     phrase1 = Phrase('hola manola')
     print(phrase1)
-    phrase1.display('a','n')
+    guessed = ('a', 'h')
+    phrase1.display(guessed) #when I pass a tuple the method does not work
+    phrase1.display('a', 'h')
     print(phrase1.check_letter('o'))
     print(phrase1.check_complete('h','o','l','a','m','n'))
     

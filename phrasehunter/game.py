@@ -1,5 +1,5 @@
 import random
-from phrasehunter.phrase import Phrase
+from phrase import Phrase
 
 class Game:
     def __init__(self):
@@ -23,7 +23,8 @@ class Game:
     
     def get_guess(self):
         guess = input('Please, enter a letter that you think would be in the phrase!')              
-        return str(guess)
+        self.guesses.append(guess)
+        return self.guesses
     
     def game_over(self):
         if self.missed > 4 and self.active_phrase.check_complete(tuple(self.guesses)) == False:
@@ -38,19 +39,26 @@ class Game:
 
     def start_game(self):
         game_running = True
-        list_guessed = []
         self.welcome() 
         self.active_phrase = Phrase(self.get_random_phrase()) 
         print(str(self.active_phrase))  #just checking if the method worked
         self.active_phrase.display()
         while game_running:
-            guessed = self.get_guess() #get a letter from user, giving tuple with guesses
-            self.guesses.append(guessed)
-            print(tuple(self.guesses)) #just checking if it is a tuple
-            if self.active_phrase.check_letter(guessed):#if letter in the phrase
-                self.active_phrase.display(tuple(self.guesses))#display the frase with that letter
-                self.game_over()
+            self.get_guess() #get a letter from user, giving tuple with guesses
+            #print((self.guesses)) #just checking if it is a tuple
+            if self.active_phrase.check_letter(self.guesses):#if letter in the phrase
+                self.active_phrase.display(self.guesses)#display the frase with the guessed letters
+                self.game_over() #check if the game is over and if yes returns game running false
             else:
                 self.missed =+ 1
                 self.game_over() #check if the game is over
             
+if __name__ == '__main__':
+
+    game1 = Game()
+    game1.start_game()
+    #random_phrase = Phrase(game1.get_random_phrase())
+    #print(random_phrase)
+    #random_phrase.display('d')
+    #letters = game1.get_guess()
+    #print(letters)
