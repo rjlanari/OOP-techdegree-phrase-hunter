@@ -1,3 +1,6 @@
+from sqlite3 import enable_shared_cache
+
+
 class Phrase:
     def __init__(self, phrase):
         self.phrase = phrase
@@ -7,7 +10,7 @@ class Phrase:
         return f'{self.phrase}'
 
     
-    def display(self, *guessed_letters):
+    def display(self, guessed_letters):
         for i in self.phrase:
             if i == ' ' or i in guessed_letters:
                 print(i, end='')
@@ -15,11 +18,12 @@ class Phrase:
                 print('_', end='')
         print("\n")    
 
-    def check_letter(self, input_letter):
-        return input_letter in self.phrase
-        
-    def check_complete(self, *guessed_letters):
-        if set(self.phrase) - {' '} == set(guessed_letters): #eliminates blank spaces from phrase
+    def check_letter(self, guessed_letters):
+        return str(guessed_letters[len(guessed_letters)-1]) in self.phrase
+
+
+    def check_complete(self, guessed_letters):
+        if set(str(self.phrase)) - {' '} == set((guessed_letters)): #eliminates blank spaces from phrase
             return True
         else:
             return False
@@ -28,9 +32,10 @@ if __name__ == '__main__':
     
     phrase1 = Phrase('hola manola')
     print(phrase1)
-    guessed = ('a', 'h')
+    print(list(str(phrase1)))
+    guessed = ['a', 'h', 'n']
     phrase1.display(guessed) #when I pass a tuple the method does not work
-    phrase1.display('a', 'h')
-    print(phrase1.check_letter('o'))
-    print(phrase1.check_complete('h','o','l','a','m','n'))
+    #phrase1.display('a', 'h')
+    print(phrase1.check_letter(['o','p','l']))
+    print(phrase1.check_complete(['h','o','l','a','n','m']))
     

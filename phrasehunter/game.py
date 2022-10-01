@@ -1,4 +1,5 @@
 import random
+from re import X
 from phrase import Phrase
 
 class Game:
@@ -27,31 +28,33 @@ class Game:
         return self.guesses
     
     def game_over(self):
-        if self.missed > 4 and self.active_phrase.check_complete(tuple(self.guesses)) == False:
-            print("You haven't guessed the hidden phrase, the game is over!")
-            game_running = False
-        elif self.active_phrase.check_complete(tuple(self.guesses)) == True:
+        if self.active_phrase.check_complete(self.guesses) == True:
             print("Congratulations, you've guessed the hidden phrase!")
-            game_running = False
-        else: 
-            game_running = True
-        
+        else:
+            print('You did not find out the phrase, you lost!')
+                
 
     def start_game(self):
         game_running = True
         self.welcome() 
         self.active_phrase = Phrase(self.get_random_phrase()) 
         print(str(self.active_phrase))  #just checking if the method worked
-        self.active_phrase.display()
+        self.active_phrase.display('')
         while game_running:
             self.get_guess() #get a letter from user, giving tuple with guesses
-            #print((self.guesses)) #just checking if it is a tuple
-            if self.active_phrase.check_letter(self.guesses):#if letter in the phrase
-                self.active_phrase.display(self.guesses)#display the frase with the guessed letters
-                self.game_over() #check if the game is over and if yes returns game running false
+            print((self.guesses)) 
+            if self.active_phrase.check_letter(self.guesses):
+                self.active_phrase.display(self.guesses)
+                if self.active_phrase.check_complete(self.guesses):
+                    game_running = False
+                else: 
+                    game_running = True 
             else:
-                self.missed =+ 1
-                self.game_over() #check if the game is over
+                self.missed += 1
+                if self.missed > 4:
+                    game_running = False
+        
+        self.game_over()
             
 if __name__ == '__main__':
 
