@@ -6,11 +6,11 @@ class Game:
     def __init__(self):
         self.missed = 0
         self.phrases = [
-                        "a bird in the hand is worth two in the bush",
-                        "all tea all shade",
-                        "she already done had herses",
-                        "to be able to blend that is what realness is",
-                        "you can not make an ommelette without breaking some eggs"
+                        Phrase("if you stay ready you aint got to get ready"),
+                        Phrase("all tea all shade"),
+                        Phrase("she already done had herses"),
+                        Phrase("to be able to blend that is what realness is"),
+                        Phrase("you can not make an ommelette without breaking some eggs")
                         ]
         self.active_phrase = None
         self.guesses = [] #list of letter provided by user
@@ -24,14 +24,19 @@ class Game:
     
     def get_guess(self):
         while True:
-            guess = input('Please, enter a letter that you think would be in the phrase! ').lower()
-            print("\n")
-            if not isalpha(guess):
-                print('That is not a valid letter!')
+            try:
+                guess = input('Please, enter a letter that you think would be in the phrase! ').lower()
                 print("\n")
-                continue
-            else:
-                break
+                if not isalpha(guess):
+                    print('That is not a valid letter!')
+                    print("\n")   
+                else:
+                    break
+            except TypeError:
+                print('That is not a valid letter! Please, chose one letter!')
+                print("\n")    
+         
+            continue
 
         self.guesses.append(guess)
         return self.guesses

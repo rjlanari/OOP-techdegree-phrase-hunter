@@ -11,7 +11,7 @@ class Phrase:
 
     
     def display(self, guessed_letters):
-        for i in self.phrase:
+        for i in str(self.phrase):
             if i == ' ' or i in guessed_letters:
                 print(i, end='')
             else: 
@@ -19,7 +19,7 @@ class Phrase:
         print("\n")    
 
     def check_letter(self, guessed_letters):
-        return str(guessed_letters[len(guessed_letters)-1]) in self.phrase
+        return str(guessed_letters[len(guessed_letters)-1]) in str(self.phrase)
 
 
     def check_complete(self, guessed_letters):

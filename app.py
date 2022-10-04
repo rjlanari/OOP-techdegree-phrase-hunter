@@ -1,3 +1,4 @@
+from re import I
 from phrasehunter.game import Game
 
 if __name__ == '__main__':
@@ -13,7 +14,6 @@ if __name__ == '__main__':
 
 
 
-  
 
 
 
