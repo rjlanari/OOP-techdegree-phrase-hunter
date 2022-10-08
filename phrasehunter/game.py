@@ -55,8 +55,8 @@ class Game:
     def start_game(self):
         game_running = True
         print("\n")
-        self.welcome() 
-        self.active_phrase = Phrase(self.get_random_phrase()) 
+        self.welcome()
+        self.active_phrase = Phrase(self.get_random_phrase())
         self.active_phrase.display('')
         while game_running:
             self.get_guess()
@@ -72,7 +72,7 @@ class Game:
                 print("\n")
                 if self.missed > 4:
                     game_running = False
-        
+
         self.game_over()
 
     

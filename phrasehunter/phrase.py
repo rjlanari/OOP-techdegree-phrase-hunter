@@ -23,7 +23,7 @@ class Phrase:
 
 
     def check_complete(self, guessed_letters):
-        if set(str(self.phrase)) - {' '} == set((guessed_letters)): #eliminates blank spaces from phrase
+        if set((guessed_letters)) >= set(str(self.phrase)) - {' '}: 
             return True
         else:
             return False
@@ -34,8 +34,7 @@ if __name__ == '__main__':
     print(phrase1)
     print(list(str(phrase1)))
     guessed = ['a', 'h', 'n']
-    phrase1.display(guessed) #when I pass a tuple the method does not work
-    #phrase1.display('a', 'h')
+    phrase1.display(guessed) 
     print(phrase1.check_letter(['o','p','l']))
     print(phrase1.check_complete(['h','o','l','a','n','m']))
     
