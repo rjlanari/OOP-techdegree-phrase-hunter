@@ -10,7 +10,7 @@ class Game:
                         Phrase("all tea all shade"),
                         Phrase("she already done had herses"),
                         Phrase("to be able to blend that is what realness is"),
-                        Phrase("you can not make an ommelette without breaking some eggs")
+                        Phrase("the shoulders should match them hips but they dont")
                         ]
         self.active_phrase = None
         self.guesses = [] #list of letter provided by user
